@@ -29,6 +29,8 @@ rgba(255, 255, 255, 0.6)
   --main-font-family: 'Roboto', sans-serif;
   --secindary-font-family: 'Raleway', sans-serif;
   --icon-color: #afb1b8;
+  --duration: cubic-bezier(0.4, 0, 0.2, 1);
+  --timing-function: 250ms;
 }
 
 p,
@@ -143,12 +145,16 @@ body {
 .header-nav .link {
   padding-top: 32px;
   padding-bottom: 32px;
+  /* padding-left: 2px;
+  padding-right: 2px; */
 
   color: var(--title-text-color);
   font-weight: 500;
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
+
+  transition: color var(--duration) var(--timing-function);
 }
 
 .header-nav .link:hover,
@@ -157,7 +163,21 @@ body {
 }
 
 .header-nav .link.current {
+  position: relative;
   color: var(--accent-color);
+}
+
+.header-nav .link.current::after {
+  position: absolute;
+  bottom: -1.5px;
+  left: 0;
+  content: '';
+
+  width: 100%;
+  height: 4px;
+
+  background-color: var(--accent-color);
+  border-radius: 2px;
 }
 
 /*  Header contacts */
@@ -173,15 +193,19 @@ body {
 }
 
 .header-contacts .link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
   color: var(--primary-text-color);
   font-weight: 500;
   font-size: 14px;
   line-height: 1.14px;
   letter-spacing: 0.02em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+
+  transition: color var(--duration) var(--timing-function);
 }
 
 .header-contacts .link:hover,
@@ -191,6 +215,7 @@ body {
 
 .header-icon {
   fill: var(--primary-text-color);
+  transition: fill var(--duration) var(--timing-function);
 }
 
 .header-contacts .link:hover .header-icon {
@@ -245,6 +270,8 @@ button {
   color: var(--primary-white-color);
   padding: 10px 32px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+
+  transition: background-color var(--duration) var(--timing-function);
 }
 
 .button-primary:hover,
@@ -259,6 +286,9 @@ button {
   background-color: var(--secondary-bg-color);
   color: var(--title-text-color);
   padding: 6px 22px;
+
+  transition: box-shadow var(--duration) var(--timing-function),
+    background-color var(--duration) var(--timing-function);
 }
 
 .button-secondary:hover,
@@ -298,14 +328,16 @@ button {
 }
 
 .features-icon-box {
-  width: 270px;
-  height: 120px;
-  background-color: var(--secondary-bg-color);
-  border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 270px;
+  height: 120px;
   margin-bottom: 30px;
+
+  background-color: var(--secondary-bg-color);
+  border-radius: 4px;
 }
 
 .feature-list .item + .item {
@@ -341,6 +373,27 @@ button {
 .work-list {
   display: flex;
   column-gap: 30px;
+}
+
+.work-desc {
+  position: relative;
+}
+
+.work-desc-text {
+  position: absolute;
+  bottom: 0;
+
+  display: flex;
+  width: 100%;
+  height: 70px;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(47, 48, 58, 0.8);
+  font-weight: 700;
+  line-height: 1.14;
+  text-transform: uppercase;
+  color: var(--primary-white-color);
 }
 
 /* .work-list .item + .item {
@@ -395,13 +448,18 @@ button {
 
 .sn-link {
   display: flex;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: var(--primary-white-color);
   align-items: center;
   justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+  background-color: var(--primary-white-color);
   color: var(--icon-color);
+
+  transition: color var(--duration) var(--timing-function),
+    background-color var(--duration) var(--timing-function);
 }
 
 .sn-link:hover,
@@ -431,6 +489,9 @@ button {
   align-items: center;
   justify-content: center;
   color: var(--icon-color);
+
+  transition: color var(--duration) var(--timing-function),
+    border-color var(--duration) var(--timing-function);
 }
 
 .clients-icon {
@@ -483,10 +544,12 @@ button {
 
 .address-map {
   color: var(--primary-white-color);
+  transition: color var(--duration) var(--timing-function);
 }
 
 .footer-contacts {
   color: var(--footer-contacts-color);
+  transition: color var(--duration) var(--timing-function);
 }
 
 .address-map:hover,
@@ -511,12 +574,16 @@ button {
 
 .join-link {
   display: flex;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
   align-items: center;
   justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+
+  transition: background-color var(--duration) var(--timing-function);
 }
 
 .join-link:hover,
@@ -557,6 +624,37 @@ button {
 
 .examples-link {
   display: block;
+  transition: box-shadow var(--duration) var(--timing-function);
+}
+
+.example-description {
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 24px;
+
+  background-color: rgba(33, 150, 243, 0.9);
+  color: var(--primary-white-color);
+  font-size: 18px;
+  line-height: 1.56;
+
+  transform: translateY(100%);
+  transition: transform var(--duration) var(--timing-function);
+}
+
+.examples-link:hover .overlay,
+.examples-link:focus .overlay {
+  transform: translateY(0);
 }
 
 .examples-link:hover,
@@ -581,4 +679,58 @@ button {
   color: var(--primary-text-color);
   font-size: 16px;
   line-height: 1.9;
+}
+
+.backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  transition: opacity var(--duration) var(--timing-function),
+    visibility var(--duration) var(--timing-function), scale var(--duration) var(--timing-function);
+}
+
+.modal {
+  position: absolute;
+  width: 528px;
+  min-height: 581px;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) scale(1) rotate(0);
+  transition: transform var(--duration) var(--timing-function);
+
+  background-color: var(--primary-white-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0) rotate(0.5turn);
+  
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
