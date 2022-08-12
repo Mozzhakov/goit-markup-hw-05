@@ -288,7 +288,8 @@ button {
   padding: 6px 22px;
 
   transition: box-shadow var(--duration) var(--timing-function),
-    background-color var(--duration) var(--timing-function);
+    background-color var(--duration) var(--timing-function),
+    color var(--duration) var(--timing-function);
 }
 
 .button-secondary:hover,
