@@ -98,8 +98,12 @@ body {
 
 .header {
   padding-top: 24px;
-  padding-bottom: 25px;
+  padding-bottom: 24px;
   border-bottom: 1px solid var(--header-border-color);
+}
+
+.no-border {
+  border: none;
 }
 
 .main {
@@ -169,7 +173,7 @@ body {
 
 .header-nav .link.current::after {
   position: absolute;
-  bottom: -1.5px;
+  bottom: 0px;
   left: 0;
   content: '';
 
@@ -230,7 +234,7 @@ body {
   padding-bottom: 200px;
   background-color: #c4c4c4;
   background-image: linear-gradient(to right, rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-    url(../images/hero-bg.jpg);
+    url(../images/hero-bg-img.jpg);
   height: 600px;
   max-width: 1600px;
   margin: 0 auto;
@@ -649,7 +653,7 @@ button {
   font-size: 18px;
   line-height: 1.56;
 
-  transform: translateY(100%);
+  transform: translateY(101%);
   transition: transform var(--duration) var(--timing-function);
 }
 
